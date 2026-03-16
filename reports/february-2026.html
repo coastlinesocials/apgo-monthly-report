@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Apollo Silver — Monthly Communications Report | February 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0d1f35; --silver: #a8b8c8; --silver-light: #d6e2ec; --silver-pale: #eef4f8;
+    --gold: #c9a84c; --white: #ffffff; --text: #1a2b3c; --text-muted: #5a7185;
+    --border: #dce8f0; --positive: #1e7a4c; --positive-bg: #e8f6ee;
+    --negative: #a33030; --negative-bg: #faeaea; --section-bg: #f4f8fb;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'DM Sans', sans-serif; background: var(--navy); color: var(--text); min-height: 100vh; }
+  .report-header { background: var(--navy); padding: 60px 0 50px; text-align: center; position: relative; overflow: hidden; }
+  .report-header::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 70% 60% at 50% 0%, rgba(169,184,200,0.12) 0%, transparent 70%); pointer-events: none; }
+  .header-inner { position: relative; z-index: 1; max-width: 860px; margin: 0 auto; padding: 0 40px; }
+  .header-eyebrow { font-size: 11px; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; color: var(--silver); margin-bottom: 20px; }
+  .header-title { font-family: 'DM Serif Display', serif; font-size: clamp(32px, 5vw, 52px); color: var(--white); line-height: 1.1; margin-bottom: 12px; }
+  .header-subtitle { font-size: 15px; color: var(--silver); font-weight: 300; margin-bottom: 32px; letter-spacing: 0.5px; }
+  .header-date-badge { display: inline-block; background: rgba(201,168,76,0.15); border: 1px solid rgba(201,168,76,0.35); color: var(--gold); font-size: 12px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; padding: 7px 20px; border-radius: 30px; }
+  .report-body { background: var(--white); border-radius: 20px 20px 0 0; padding: 0 0 80px; min-height: 100vh; }
+  .overview-band { background: var(--silver-pale); border-bottom: 1px solid var(--border); padding: 48px 40px; border-radius: 20px 20px 0 0; }
+  .overview-inner { max-width: 860px; margin: 0 auto; }
+  .section-label { font-size: 10px; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); margin-bottom: 14px; }
+  .overview-text { font-size: 15.5px; line-height: 1.85; color: var(--text); font-weight: 300; }
+  .overview-text + .overview-text { margin-top: 14px; }
+  .kpi-strip { background: var(--navy); padding: 40px; }
+  .kpi-inner { max-width: 860px; margin: 0 auto; }
+  .kpi-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px; }
+  .kpi-card { background: rgba(255,255,255,0.04); border: 1px solid rgba(168,184,200,0.15); padding: 24px 22px; text-align: center; border-radius: 4px; }
+  .kpi-card:first-child { border-radius: 12px 4px 4px 12px; }
+  .kpi-card:last-child { border-radius: 4px 12px 12px 4px; }
+  .kpi-label { font-size: 10px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--silver); margin-bottom: 10px; }
+  .kpi-value { font-family: 'DM Serif Display', serif; font-size: 34px; color: var(--white); line-height: 1; margin-bottom: 6px; }
+  .kpi-change { font-size: 12px; font-weight: 500; padding: 3px 9px; border-radius: 20px; display: inline-block; }
+  .kpi-change.up { background: rgba(30,122,76,0.25); color: #5cd69a; }
+  .kpi-change.down { background: rgba(163,48,48,0.25); color: #f08080; }
+  .content-area { max-width: 860px; margin: 0 auto; padding: 0 40px; }
+  .report-section { margin-top: 60px; }
+  .section-header { display: flex; align-items: baseline; gap: 16px; margin-bottom: 28px; padding-bottom: 16px; border-bottom: 1px solid var(--border); }
+  .section-number { font-family: 'DM Serif Display', serif; font-size: 48px; color: var(--silver-light); line-height: 1; flex-shrink: 0; margin-bottom: -6px; }
+  .section-title { font-family: 'DM Serif Display', serif; font-size: 26px; color: var(--navy); line-height: 1.1; }
+  .section-subtitle { font-size: 12px; color: var(--text-muted); font-weight: 400; margin-top: 3px; }
+  .platform-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 24px; }
+  .platform-card { background: var(--section-bg); border: 1px solid var(--border); border-radius: 14px; overflow: hidden; }
+  .platform-card-header { background: var(--navy); padding: 16px 22px; display: flex; align-items: center; gap: 10px; }
+  .platform-icon { width: 28px; height: 28px; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 700; flex-shrink: 0; }
+  .platform-icon.linkedin { background: #0077b5; color: white; }
+  .platform-icon.twitter { background: #1a1a1a; color: white; }
+  .platform-name { font-size: 14px; font-weight: 600; color: var(--white); }
+  .platform-period { font-size: 11px; color: var(--silver); margin-left: auto; }
+  .platform-metrics { padding: 20px 22px; display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .metric-name { font-size: 10px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: var(--text-muted); margin-bottom: 4px; }
+  .metric-row { display: flex; align-items: baseline; gap: 7px; }
+  .metric-val { font-size: 20px; font-weight: 600; color: var(--navy); line-height: 1; }
+  .metric-delta { font-size: 11px; font-weight: 500; padding: 2px 7px; border-radius: 20px; }
+  .metric-delta.pos { background: var(--positive-bg); color: var(--positive); }
+  .metric-delta.neg { background: var(--negative-bg); color: var(--negative); }
+  .top-post-box { margin: 0 22px 20px; background: rgba(201,168,76,0.08); border: 1px solid rgba(201,168,76,0.25); border-radius: 10px; padding: 14px 18px; }
+  .top-post-label { font-size: 9px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); margin-bottom: 6px; }
+  .top-post-title { font-size: 13px; font-weight: 500; color: var(--navy); margin-bottom: 10px; }
+  .top-post-stats { display: flex; gap: 16px; flex-wrap: wrap; }
+  .top-post-stat { font-size: 12px; color: var(--text-muted); }
+  .top-post-stat strong { color: var(--navy); font-weight: 600; }
+  .summary-block { background: var(--section-bg); border-left: 3px solid var(--silver-light); border-radius: 0 10px 10px 0; padding: 18px 20px; margin-bottom: 20px; }
+  .summary-block p { font-size: 14px; line-height: 1.8; color: var(--text); font-weight: 300; }
+  .mailout-table-wrap { overflow-x: auto; margin-bottom: 24px; }
+  .mailout-table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+  .mailout-table thead tr { background: var(--navy); }
+  .mailout-table thead th { font-size: 10px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: var(--silver); padding: 12px 16px; text-align: left; white-space: nowrap; }
+  .mailout-table tbody tr { border-bottom: 1px solid var(--border); }
+  .mailout-table tbody tr:hover { background: var(--silver-pale); }
+  .mailout-table tbody td { padding: 13px 16px; color: var(--text); vertical-align: middle; }
+  .mailout-table .date-col { color: var(--text-muted); font-size: 12px; white-space: nowrap; }
+  .mailout-table .subject-col { font-weight: 500; }
+  .rate-pill { display: inline-block; padding: 3px 10px; border-radius: 20px; font-size: 12px; font-weight: 600; }
+  .rate-pill.high { background: var(--positive-bg); color: var(--positive); }
+  .rate-pill.medium { background: #fff8e6; color: #8a6a00; }
+  .rate-pill.low { background: var(--section-bg); color: var(--text-muted); }
+  .resend-note { font-size: 11px; color: var(--text-muted); font-style: italic; background: var(--silver-pale); border-radius: 8px; padding: 10px 16px; margin-bottom: 24px; }
+  .growth-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-bottom: 24px; }
+  .growth-card { background: var(--section-bg); border: 1px solid var(--border); border-radius: 12px; padding: 20px; text-align: center; }
+  .g-val { font-family: 'DM Serif Display', serif; font-size: 30px; color: var(--navy); line-height: 1; margin-bottom: 6px; }
+  .g-label { font-size: 11px; font-weight: 500; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; }
+  .g-change { font-size: 12px; font-weight: 500; margin-top: 6px; }
+  .g-change.pos { color: var(--positive); }
+  .g-change.neg { color: var(--negative); }
+  .source-bars { margin-bottom: 24px; }
+  .source-row { display: flex; align-items: center; gap: 14px; margin-bottom: 10px; }
+  .source-name { font-size: 13px; font-weight: 500; color: var(--text); min-width: 200px; }
+  .bar-track { flex: 1; height: 8px; background: var(--border); border-radius: 4px; overflow: hidden; }
+  .bar-fill { height: 100%; border-radius: 4px; background: var(--navy); }
+  .source-count { font-size: 13px; font-weight: 600; color: var(--navy); min-width: 60px; text-align: right; }
+  .web-grid-top { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px; }
+  .web-card { background: var(--section-bg); border: 1px solid var(--border); border-radius: 14px; overflow: hidden; }
+  .web-card-title { font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--text-muted); padding: 16px 20px 10px; border-bottom: 1px solid var(--border); background: var(--white); }
+  .web-card-body { padding: 14px 20px; }
+  .traffic-row { display: flex; justify-content: space-between; align-items: center; padding: 8px 0; border-bottom: 1px solid var(--border); font-size: 13.5px; }
+  .traffic-row:last-child { border-bottom: none; }
+  .traffic-label { color: var(--text-muted); }
+  .traffic-val { font-weight: 600; color: var(--navy); }
+  .traffic-sub { font-size: 11px; color: var(--text-muted); }
+  .eng-row { display: flex; justify-content: space-between; align-items: center; padding: 7px 0; border-bottom: 1px solid var(--border); font-size: 13px; }
+  .eng-row:last-child { border-bottom: none; }
+  .eng-source { font-weight: 500; color: var(--text); }
+  .eng-right { text-align: right; }
+  .eng-rate { font-weight: 600; color: var(--navy); font-size: 14px; }
+  .eng-time { font-size: 11px; color: var(--text-muted); }
+  .country-table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+  .country-table thead tr { background: var(--silver-pale); }
+  .country-table thead th { font-size: 10px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: var(--text-muted); padding: 10px 14px; text-align: left; }
+  .country-table tbody tr { border-bottom: 1px solid var(--border); }
+  .country-table tbody td { padding: 11px 14px; color: var(--text); }
+  .device-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 20px; }
+  .device-card { background: var(--white); border: 1px solid var(--border); border-radius: 10px; padding: 16px; text-align: center; }
+  .device-icon { font-size: 22px; margin-bottom: 8px; }
+  .device-pct { font-family: 'DM Serif Display', serif; font-size: 26px; color: var(--navy); line-height: 1; margin-bottom: 4px; }
+  .device-label { font-size: 11px; color: var(--text-muted); font-weight: 500; text-transform: uppercase; letter-spacing: 1px; }
+  .device-time { font-size: 12px; color: var(--gold); font-weight: 500; margin-top: 4px; }
+  .pages-table { width: 100%; border-collapse: collapse; font-size: 13.5px; margin-bottom: 20px; }
+  .pages-table thead tr { background: var(--silver-pale); }
+  .pages-table thead th { font-size: 10px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: var(--text-muted); padding: 10px 14px; text-align: left; }
+  .pages-table tbody tr { border-bottom: 1px solid var(--border); }
+  .pages-table tbody td { padding: 11px 14px; color: var(--text); }
+  .rec-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; }
+  .rec-card { background: var(--section-bg); border: 1px solid var(--border); border-radius: 14px; padding: 24px; }
+  .rec-card-label { font-size: 9px; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase; color: var(--gold); margin-bottom: 8px; }
+  .rec-card-title { font-family: 'DM Serif Display', serif; font-size: 18px; color: var(--navy); margin-bottom: 14px; }
+  .rec-list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  .rec-list li { font-size: 13.5px; line-height: 1.65; color: var(--text); font-weight: 300; padding-left: 16px; position: relative; }
+  .rec-list li::before { content: ''; position: absolute; left: 0; top: 9px; width: 5px; height: 5px; border-radius: 50%; background: var(--silver); }
+  .report-footer { background: var(--navy); padding: 32px 40px; text-align: center; margin-top: 60px; }
+  .footer-inner { max-width: 860px; margin: 0 auto; }
+  .footer-text { font-size: 12px; color: var(--silver); line-height: 1.7; }
+  .footer-divider { width: 40px; height: 1px; background: var(--gold); margin: 14px auto; opacity: 0.5; }
+  @media (max-width: 640px) {
+    .platform-grid { grid-template-columns: 1fr; }
+    .growth-grid { grid-template-columns: repeat(2, 1fr); }
+    .web-grid-top { grid-template-columns: 1fr; }
+    .rec-grid { grid-template-columns: 1fr; }
+    .content-area { padding: 0 20px; }
+    .overview-band { padding: 36px 24px; }
+    .kpi-strip { padding: 32px 24px; }
+    .kpi-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+</style>
+</head>
+<body>
+<header class="report-header">
+  <div class="header-inner">
+    <p class="header-eyebrow">Coastline Communications</p>
+    <h1 class="header-title">Monthly Communications Report</h1>
+    <p class="header-subtitle">Email Marketing &nbsp;·&nbsp; Social Media &nbsp;·&nbsp; Website Traffic</p>
+    <span class="header-date-badge">February 1–28, 2026</span>
+  </div>
+</header>
+
+<div class="report-body">
+  <section class="overview-band">
+    <div class="overview-inner">
+      <p class="section-label">Executive Overview</p>
+      <p class="overview-text">Apollo Silver's communications activity in February delivered some of the strongest results recorded across all channels since reporting began. Two high-impact announcements drove the month's performance: the Company's acceptance into the U.S. Defense Industrial Base Consortium and its recognition as 13th overall in the 2026 TSX Venture 50, both of which resonated strongly with investors across social media, email, and the website. The February results confirm that milestone-driven communications continue to be Apollo's most powerful engagement tool, with content tied to corporate achievements and external recognition outperforming all other content types by a wide margin.</p>
+      <p class="overview-text">LinkedIn delivered an exceptional month, with impressions increasing 242 percent and clicks rising 424 percent month over month, reflecting strong investor interest in Apollo's growing profile and strategic positioning. Twitter/X also continued its upward trend, with impressions up 52 percent and likes more than doubling. Email performance remained well above industry benchmarks, with open rates across all four primary campaigns ranging from 43 to 49 percent. Mailing list growth accelerated further, adding 78 new contacts entirely through organic website signups. Website traffic improved materially, with active users rising to 461 and engagement quality remaining strong, with 444 users spending more than 30 seconds on site and an average session duration of over three minutes.</p>
+    </div>
+  </section>
+
+  <div class="kpi-strip">
+    <div class="kpi-inner">
+      <div class="kpi-grid">
+        <div class="kpi-card">
+          <p class="kpi-label">LinkedIn Followers</p>
+          <p class="kpi-value">1,039</p>
+          <span class="kpi-change up">+2% MoM</span>
+        </div>
+        <div class="kpi-card">
+          <p class="kpi-label">Email List</p>
+          <p class="kpi-value">1,856</p>
+          <span class="kpi-change up">+5.1% MoM</span>
+        </div>
+        <div class="kpi-card">
+          <p class="kpi-label">Website Users</p>
+          <p class="kpi-value">461</p>
+          <span class="kpi-change up">vs. ~654 Jan</span>
+        </div>
+        <div class="kpi-card">
+          <p class="kpi-label">Avg Session</p>
+          <p class="kpi-value">3m 12s</p>
+          <span class="kpi-change up">96% engaged</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="content-area">
+
+    <!-- PART 1: SOCIAL MEDIA -->
+    <section class="report-section">
+      <div class="section-header">
+        <span class="section-number">01</span>
+        <div>
+          <h2 class="section-title">Social Media Recap</h2>
+          <p class="section-subtitle">LinkedIn &amp; Twitter/X performance for February 2026</p>
+        </div>
+      </div>
+
+      <div class="platform-grid">
+        <div class="platform-card">
+          <div class="platform-card-header">
+            <div class="platform-icon linkedin">in</div>
+            <span class="platform-name">LinkedIn</span>
+            <span class="platform-period">Feb 2026</span>
+          </div>
+          <div class="platform-metrics">
+            <div class="metric-item">
+              <p class="metric-name">Posts</p>
+              <div class="metric-row"><span class="metric-val">5</span><span class="metric-delta pos">+67%</span></div>
+            </div>
+            <div class="metric-item">
+              <p class="metric-name">Impressions</p>
+              <div class="metric-row"><span class="metric-val">4,942</span><span class="metric-delta pos">+242%</span></div>
+            </div>
+            <div class="metric-item">
+              <p class="metric-name">Clicks</p>
+              <div class="metric-row"><span class="metric-val">225</span><span class="metric-delta pos">+424%</span></div>
+            </div>
+            <div class="metric-item">
+              <p class="metric-name">Engagement Rate</p>
+              <div class="metric-row"><span class="metric-val">6.62%</span><span class="metric-delta pos">+42%</span></div>
+            </div>
+            <div class="metric-item">
+              <p class="metric-name">New Followers</p>
+              <div class="metric-row"><span class="metric-val">16</span><span class="metric-delta pos">+7%</span></div>
+            </div>
+            <div class="metric-item">
+              <p class="metric-name">Total Followers</p>
+              <div class="metric-row"><span class="metric-val">1,039</span><span class="metric-delta pos">+2%</span></div>
+            </div>
+          </div>
+          <div class="top-post-box">
+            <p class="top-post-label">Top Post</p>
+            <p class="top-post-title">Feb 12 — Return of Tom Peregoodoff as Board Nominee</p>
+            <div class="top-post-stats">
+              <span class="top-post-stat"><strong>2,294</strong> impressions</span>
+              <span class="top-post-stat"><strong>62</strong> likes</span>
+              <span class="top-post-stat"><strong>7</strong> comments</span>
+              <span class="top-post-stat"><strong>68</strong> clicks</span>
+              <span class="top-post-stat"><strong>6.06%</strong> eng. rate</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="platform-card">
+          <div class="platform-card-header">
+            <div class="platform-icon twitter">𝕏</div>
+            <span class="platform-name">Twitter / X</span>
+            <span class="platform-period">Feb 2026</span>
+          </div>
+          <div class="platform-metrics">
+            <div class="metric-item">
+              <p class="metric-name">Tweets</p>
+              <div class="metric-row"><span class="metric-val">5</span><span class="metric-delta pos">+67%</span></div>
+            </div>
+            <div class="metric-item">
+              <p class="metric-name">Impressions</p>
+              <div class="metric-row"><span class="metric-val">6,476</span><span class="metric-delta pos">+52%</span></div>
+            </div>
+            <div class="metric-item">
+              <p class="metric-name">Engagements</p>
+              <div class="metric-row"><span class="metric-val">173</span><span class="metric-delta pos">+61%</span></div>
+            </div>
+            <div class="metric-item">
+              <p class="metric-name">Clicks</p>
+              <div class="metric-row"><span class="metric-val">27</span><span class="metric-delta neg">-18%</span></div>
+            </div>
+            <div class="metric-item">
+              <p class="metric-name">Likes</p>
+              <div class="metric-row"><span class="metric-val">116</span><span class="metric-delta pos">+132%</span></div>
+            </div>
+            <div class="metric-item">
+              <p class="metric-name">New Followers</p>
+              <div class="metric-row"><span class="metric-val">18</span><span class="metric-delta pos">+20%</span></div>
+            </div>
+          </div>
+          <div class="top-post-box">
+            <p class="top-post-label">Top Tweet</p>
+            <p class="top-post-title">Feb 18 — Apollo Silver Named to 2026 TSX Venture 50</p>
+            <div class="top-post-stats">
+              <span class="top-post-stat"><strong>2,412</strong> impressions</span>
+              <span class="top-post-stat"><strong>30</strong> likes</span>
+              <span class="top-post-stat"><strong>2</strong> retweets</span>
+              <span class="top-post-stat"><strong>1.70%</strong> eng. rate</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="summary-block">
+        <p>LinkedIn delivered its strongest month on record, with impressions up 242 percent and clicks rising 424 percent, driven by high-impact announcements around board leadership and the TSX Venture 50 recognition. The board nomination post generated the highest individual engagement, while the TSX Venture 50 post delivered the strongest Twitter impressions of the month. Across both platforms, content tied to corporate achievements and external recognition outperformed all other content types, reinforcing the value of milestone-driven communications. Twitter likes more than doubled month over month, reflecting growing audience enthusiasm around Apollo's rising market profile.</p>
+      </div>
+    </section>
+
+    <!-- PART 2: MAILOUTS -->
+    <section class="report-section">
+      <div class="section-header">
+        <span class="section-number">02</span>
+        <div>
+          <h2 class="section-title">Mailout Recap</h2>
+          <p class="section-subtitle">Mailchimp campaign performance &amp; list growth</p>
+        </div>
+      </div>
+
+      <div class="mailout-table-wrap">
+        <table class="mailout-table">
+          <thead>
+            <tr><th>Date</th><th>Campaign</th><th>Delivered</th><th>Open Rate</th><th>Click Rate</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="date-col">Feb 2</td>
+              <td class="subject-col">NR — Apollo Silver Accepted into U.S. Defense Industrial Base Consortium</td>
+              <td>1,499</td>
+              <td><span class="rate-pill high">49.2%</span></td>
+              <td><span class="rate-pill medium">1.7%</span></td>
+            </tr>
+            <tr>
+              <td class="date-col">Feb 6</td>
+              <td class="subject-col">CEO Blog — Apollo's Calico Fits Long-Term Strategic U.S. Economic &amp; Defense Policy</td>
+              <td>1,458</td>
+              <td><span class="rate-pill high">42.7%</span></td>
+              <td><span class="rate-pill medium">2.7%</span></td>
+            </tr>
+            <tr>
+              <td class="date-col">Feb 12</td>
+              <td class="subject-col">NR — Apollo Silver Announces Return of Tom Peregoodoff as Board Nominee</td>
+              <td>1,532</td>
+              <td><span class="rate-pill high">44.2%</span></td>
+              <td><span class="rate-pill low">1.0%</span></td>
+            </tr>
+            <tr>
+              <td class="date-col">Feb 18</td>
+              <td class="subject-col">NR — Apollo Silver Ranks 13th Overall in the 2026 TSX Venture 50</td>
+              <td>1,543</td>
+              <td><span class="rate-pill high">43.8%</span></td>
+              <td><span class="rate-pill medium">1.4%</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p class="resend-note">Each campaign was resent to non-openers 48 to 72 hours after the original send, capturing additional reach from recipients who missed the initial delivery.</p>
+
+      <div class="growth-grid">
+        <div class="growth-card">
+          <p class="g-val">1,856</p>
+          <p class="g-label">Total Contacts</p>
+          <p class="g-change pos">+5.1% MoM</p>
+        </div>
+        <div class="growth-card">
+          <p class="g-val">+78</p>
+          <p class="g-label">New Contacts</p>
+          <p class="g-change pos">All via website form</p>
+        </div>
+        <div class="growth-card">
+          <p class="g-val">1,582</p>
+          <p class="g-label">Subscribed</p>
+          <p class="g-change pos">12 unsubscribed</p>
+        </div>
+      </div>
+
+      <p style="font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--text-muted);margin-bottom:12px;">New Contact Sources</p>
+      <div class="source-bars">
+        <div class="source-row">
+          <span class="source-name">API / Website Signup Form</span>
+          <div class="bar-track"><div class="bar-fill" style="width:100%"></div></div>
+          <span class="source-count">78</span>
+        </div>
+        <div class="source-row">
+          <span class="source-name">Import</span>
+          <div class="bar-track"><div class="bar-fill" style="width:0%"></div></div>
+          <span class="source-count">0</span>
+        </div>
+      </div>
+
+      <div class="summary-block">
+        <p>Email performance in February was exceptional across all four campaigns, with open rates ranging from 43 to 49 percent and all campaigns well above the industry benchmark of approximately 21 percent. The DIBC Consortium announcement delivered the highest open rate of the month at 49.2 percent, reflecting strong investor interest in Apollo's expanding strategic partnerships. The CEO blog generated the strongest click-through rate at 2.7 percent, confirming that leadership-driven content continues to drive meaningful engagement beyond the open. All 78 new contacts added during February came through the website's integrated signup form, reinforcing the strength of Apollo's organic digital presence and continued investor discovery.</p>
+      </div>
+    </section>
+
+    <!-- PART 3: WEBSITE -->
+    <section class="report-section">
+      <div class="section-header">
+        <span class="section-number">03</span>
+        <div>
+          <h2 class="section-title">Website Traffic Overview</h2>
+          <p class="section-subtitle">GA4 performance data — February 2026</p>
+        </div>
+      </div>
+
+      <div class="web-grid-top">
+        <div class="web-card">
+          <p class="web-card-title">Traffic Overview</p>
+          <div class="web-card-body">
+            <div class="traffic-row">
+              <span class="traffic-label">Active Users</span>
+              <span class="traffic-val">461</span>
+            </div>
+            <div class="traffic-row">
+              <span class="traffic-label">New Users</span>
+              <div><span class="traffic-val">373</span><p class="traffic-sub">81% of total</p></div>
+            </div>
+            <div class="traffic-row">
+              <span class="traffic-label">Quality Traffic (≥30s)</span>
+              <div><span class="traffic-val">444</span><p class="traffic-sub">96% of users</p></div>
+            </div>
+            <div class="traffic-row">
+              <span class="traffic-label">Avg Session Duration</span>
+              <span class="traffic-val">3m 12s</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="web-card">
+          <p class="web-card-title">Engagement by Source</p>
+          <div class="web-card-body">
+            <div class="eng-row">
+              <span class="eng-source">Referral</span>
+              <div class="eng-right"><p class="eng-rate">72.3%</p><p class="eng-time">avg 1m 17s</p></div>
+            </div>
+            <div class="eng-row">
+              <span class="eng-source">Organic Search</span>
+              <div class="eng-right"><p class="eng-rate">68.6%</p><p class="eng-time">avg 1m 04s</p></div>
+            </div>
+            <div class="eng-row">
+              <span class="eng-source">Direct</span>
+              <div class="eng-right"><p class="eng-rate">56.5%</p><p class="eng-time">avg 54s</p></div>
+            </div>
+            <div class="eng-row">
+              <span class="eng-source">Organic Social</span>
+              <div class="eng-right"><p class="eng-rate">40.0%</p><p class="eng-time">avg 9s</p></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Top Pages -->
+      <div class="web-card" style="margin-bottom:20px;">
+        <p class="web-card-title">Top Pages by Views</p>
+        <div class="web-card-body" style="padding:0;">
+          <table class="pages-table">
+            <thead><tr><th>Page</th><th>Views</th></tr></thead>
+            <tbody>
+              <tr><td>Home</td><td>533</td></tr>
+              <tr><td>News</td><td>285</td></tr>
+              <tr><td>Investors</td><td>254</td></tr>
+              <tr><td>Calico Project</td><td>130</td></tr>
+              <tr><td>Apollo Accepted into DIBC</td><td>109</td></tr>
+              <tr><td>Cinco Project</td><td>67</td></tr>
+              <tr><td>CEO Blog — Calico &amp; U.S. Defense Policy</td><td>66</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Country Table -->
+      <div class="web-card" style="margin-bottom:20px;">
+        <p class="web-card-title">Top Countries by Active Users</p>
+        <div class="web-card-body" style="padding:0;">
+          <table class="country-table">
+            <thead><tr><th>Country</th><th>Active Users</th></tr></thead>
+            <tbody>
+              <tr><td>🇺🇸 United States</td><td>174</td></tr>
+              <tr><td>🇨🇦 Canada</td><td>143</td></tr>
+              <tr><td>🇩🇪 Germany</td><td>26</td></tr>
+              <tr><td>🇲🇽 Mexico</td><td>25</td></tr>
+              <tr><td>🇬🇧 United Kingdom</td><td>10</td></tr>
+              <tr><td>🇸🇪 Sweden</td><td>8</td></tr>
+              <tr><td>🇫🇷 France</td><td>7</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Device Breakdown -->
+      <p style="font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--text-muted);margin-bottom:12px;">Device Breakdown (≥30s sessions)</p>
+      <div class="device-grid">
+        <div class="device-card">
+          <p class="device-icon">📱</p>
+          <p class="device-pct">52.5%</p>
+          <p class="device-label">Mobile</p>
+          <p class="device-time">avg 2m 11s</p>
+        </div>
+        <div class="device-card">
+          <p class="device-icon">🖥</p>
+          <p class="device-pct">45.9%</p>
+          <p class="device-label">Desktop</p>
+          <p class="device-time">avg 3m 59s</p>
+        </div>
+        <div class="device-card">
+          <p class="device-icon">⬜</p>
+          <p class="device-pct">1.8%</p>
+          <p class="device-label">Tablet</p>
+          <p class="device-time">avg 3m 40s</p>
+        </div>
+      </div>
+
+      <div class="summary-block">
+        <p>Website performance in February showed a healthy and engaged audience, with 461 active users and 96 percent of visitors spending more than 30 seconds on site. The average session duration of 3 minutes and 12 seconds across filtered users reflects meaningful investor engagement with Apollo's content. The DIBC acceptance page appeared in the top pages for the first time, directly reflecting the impact of the February 2 announcement on site traffic. Referral traffic continued to show the highest engagement rate at 72 percent, while Organic Search remained the largest source by session volume. The United States and Canada continued to lead by active users, consistent with prior months.</p>
+      </div>
+    </section>
+
+    <!-- PART 4: RECOMMENDATIONS -->
+    <section class="report-section">
+      <div class="section-header">
+        <span class="section-number">04</span>
+        <div>
+          <h2 class="section-title">Recommendations &amp; Next Steps</h2>
+          <p class="section-subtitle">Strategic priorities for March 2026 and beyond</p>
+        </div>
+      </div>
+
+      <div class="rec-grid">
+        <div class="rec-card">
+          <p class="rec-card-label">Social Media</p>
+          <h3 class="rec-card-title">Build on Momentum</h3>
+          <ul class="rec-list">
+            <li>Continue prioritizing milestone-driven content as the TSX Venture 50 recognition and board announcements delivered the strongest engagement of any month to date.</li>
+            <li>Maintain or increase posting frequency on LinkedIn to capitalize on the 242 percent impression growth achieved in February.</li>
+            <li>Expand video content usage across both platforms given that video posts featured among the top performing content in February on both LinkedIn and Twitter/X.</li>
+            <li>Continue cross-posting third-party recognition and external coverage to reinforce Apollo's growing profile and credibility with investors.</li>
+          </ul>
+        </div>
+        <div class="rec-card">
+          <p class="rec-card-label">Mailouts</p>
+          <h3 class="rec-card-title">Sustain &amp; Refine</h3>
+          <ul class="rec-list">
+            <li>Maintain the resend strategy to non-openers as it continues to capture meaningful additional reach without duplicating sends to engaged contacts.</li>
+            <li>Continue monitoring open rates against the industry benchmark; February's performance of 43 to 49 percent remains well above sector norms.</li>
+            <li>Refine click-through calls to action on news release campaigns, which consistently show lower click rates than CEO blog and leadership content.</li>
+            <li>With 78 new organic signups in February, continue reinforcing website signup form visibility to sustain list growth momentum.</li>
+          </ul>
+        </div>
+        <div class="rec-card">
+          <p class="rec-card-label">Website</p>
+          <h3 class="rec-card-title">Deepen Engagement</h3>
+          <ul class="rec-list">
+            <li>The DIBC page entering the top pages list confirms that news-driven traffic spills directly onto the website; continue deep-linking news releases to relevant project and corporate pages.</li>
+            <li>Prioritize SEO improvements on the Calico and Cinco project pages, which continue to draw consistent traffic and represent Apollo's core investor content.</li>
+            <li>With mobile now accounting for 52.5 percent of engaged sessions, review mobile layout and load speed across key investor pages to ensure the experience matches desktop quality.</li>
+          </ul>
+        </div>
+        <div class="rec-card">
+          <p class="rec-card-label">Ongoing</p>
+          <h3 class="rec-card-title">Track &amp; Report</h3>
+          <ul class="rec-list">
+            <li>Maintain this monthly reporting framework to track performance and identify trends across all communications channels.</li>
+            <li>With six months of data now available from September 2025 through February 2026, begin identifying seasonal patterns and benchmarking months against their prior year equivalents as the archive grows.</li>
+            <li>Continue strengthening UTM tracking across social posts and mailouts to more precisely attribute website sessions to specific campaigns.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <footer class="report-footer">
+    <div class="footer-inner">
+      <p class="footer-text">Prepared by Coastline Communications</p>
+      <div class="footer-divider"></div>
+      <p class="footer-text">Apollo Silver Corp. &nbsp;·&nbsp; Monthly Communications Report &nbsp;·&nbsp; February 2026<br>Confidential — for internal and client use only</p>
+    </div>
+  </footer>
+</div>
+</body>
+</html>
